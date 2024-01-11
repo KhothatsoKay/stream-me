@@ -5,7 +5,7 @@ import './VideoDisplay.css';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-const VideoDisplay = ({ videoUrl, videoTitle }) => {
+const VideoDisplay = ({ videoUrl }) => {
   return (
     <div className='player-wrapper'>
       <ReactPlayer

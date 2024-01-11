@@ -27,9 +27,7 @@ img{
 h2{
     color: #000;
 }
-button{
 
-}
 @media (max-width: 768px) {
   .video-grid{
     display: flex;
