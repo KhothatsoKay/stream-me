@@ -1,4 +1,4 @@
-// VideoList.js
+
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from './firebase';
@@ -33,12 +33,10 @@ const VideoList = () => {
   }, []);
 
   const handleThumbnailClick = (video) => {
-    // Open modal and set the selected video
     setSelectedVideo(video);
   };
 
   const handleCloseModal = () => {
-    // Close modal by resetting the selected video
     setSelectedVideo(null);
   };
 
@@ -46,7 +44,6 @@ const VideoList = () => {
     <div className="video-container">
       {selectedVideo ? (
         <div className="video-modal" onClick={handleCloseModal}>
-          {/* Use your VideoDisplay component here */}
           <VideoDisplay videoUrl={selectedVideo.url} videoTitle={selectedVideo.title} />
           <button className='btn btn-warning' onClick={handleCloseModal}>Close</button>
         </div>

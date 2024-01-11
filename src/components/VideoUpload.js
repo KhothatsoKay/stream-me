@@ -28,22 +28,22 @@ const VideoUpload = () => {
         return;
       }
 
-      // Upload video file
+      
       const videoStorageRef = ref(storage, `${videoTitle}_video.mp4`);
       const videoUploadTask = uploadBytesResumable(videoStorageRef, videoFile);
 
-      // Upload thumbnail file
+     
       const thumbnailStorageRef = ref(storage, `${videoTitle}_thumbnail.jpg`);
       const thumbnailUploadTask = uploadBytesResumable(thumbnailStorageRef, thumbnailFile);
 
-      // Wait for both uploads to complete
+      
       await Promise.all([videoUploadTask, thumbnailUploadTask]);
 
-      // Get download URLs
+    
       const videoDownloadURL = await getDownloadURL(videoUploadTask.snapshot.ref);
       const thumbnailDownloadURL = await getDownloadURL(thumbnailUploadTask.snapshot.ref);
 
-      // Add video details to Firestore
+      
       const videoDocRef = await addDoc(collection(firestore, 'videos'), {
         title: videoTitle,
         url: videoDownloadURL,
