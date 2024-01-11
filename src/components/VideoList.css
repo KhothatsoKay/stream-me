@@ -1,0 +1,46 @@
+
+.video-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin: 20px;
+}
+.card{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-left: 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: azure;
+}
+.card:hover{
+    transform: scale(1.05);
+}
+img{
+    height: 200px;
+    width: 250px;
+}
+h2{
+    color: #000;
+}
+button{
+
+}
+@media (max-width: 768px) {
+  .video-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .card{
+    margin: 10px;
+    width: 300px;
+    height: 250px;
+  }
+
+}

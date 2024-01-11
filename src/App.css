@@ -1,7 +1,9 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 .App {
   text-align: center;
+ 
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
