@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, storage, ref, uploadBytesResumable, firestore, getDownloadURL } from './firebase';
+import { storage, ref, uploadBytesResumable, firestore, getDownloadURL } from './firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 const VideoUpload = () => {
