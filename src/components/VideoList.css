@@ -1,26 +1,23 @@
 
 .video-grid {
     display: flex;
-    justify-content: space-between;
-    width: 350px;
-    margin: 20px;
+    justify-content: center;
+    margin: 10px
 }
 .card{
-    width: 250px;
+    margin: 10px;
+    width: 270px;
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
-    margin-left: 15px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: azure;
 }
 .card:hover{
     transform: scale(1.05);
+    cursor: pointer;
 }
 img{
+
     height: 200px;
     width: 250px;
 }
