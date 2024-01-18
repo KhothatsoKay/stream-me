@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { auth } from './firebase'; 
+import { auth } from './firebase';
 import './Navbar.css';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -29,40 +29,41 @@ const Navbar = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className='navbar-nav  ms-auto mb-2 mb-lg-0'>
-          <li className='nav-item'>
-            <NavLink to="/" activeClassName="active" className="nav-link">
-            <VideoLibraryIcon fontSize="large" className="me-2" />
-              <span className="nav-item-text">Videos</span>
-            </NavLink>
-          </li>
-          {isAllowedUser && (
-            <>
+          <ul className='navbar-nav  ms-auto mb-2 mb-lg-0'>
+            <li className='nav-item'>
+              <NavLink to="/" activeClassName="active" className="nav-link">
+                <VideoLibraryIcon fontSize="large" className="me-2" />
+                <span className="nav-item-text">Videos</span>
+              </NavLink>
+
+            </li>
+            {isAllowedUser && (
+              <>
+                <li className='nav-item'>
+                  <NavLink to="/upload" activeClassName="active" className="nav-link">
+                    <CloudUploadIcon fontSize="large" className="me-2" />
+                    <span className="nav-item-text">upload</span>
+                  </NavLink>
+                </li>
+
+              </>
+            )}
+            {!user && (
               <li className='nav-item'>
-                <NavLink to="/upload" activeClassName="active" className="nav-link">
-                <CloudUploadIcon fontSize="large" className="me-2" />
-                <span className="nav-item-text">upload</span>
+                <NavLink to="/login" activeClassName="active" className="nav-link">
+                  Sign In
                 </NavLink>
               </li>
+            )}
+            {user && (
+              <li className='nav-item'>
+                <button onClick={handleLogout} className="btn btn-danger">
+                  Logout
+                </button>
+              </li>
+            )}
 
-            </>
-          )}
-          {!user && (
-            <li className='nav-item'>
-              <NavLink to="/login" activeClassName="active" className="nav-link">
-                Sign In
-              </NavLink>
-            </li>
-          )}
-          {user && (
-            <li className='nav-item'>
-              <button  onClick={handleLogout} className="btn btn-danger">
-                Logout
-              </button>
-            </li>
-          )}
-
-        </ul>
+          </ul>
         </div>
       </div>
     </nav>
