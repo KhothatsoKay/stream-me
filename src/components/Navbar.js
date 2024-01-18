@@ -31,10 +31,10 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className='navbar-nav  ms-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
-              <NavLink to="/" activeClassName="active" className="nav-link">
-                <VideoLibraryIcon fontSize="large" className="me-2" />
-                <span className="nav-item-text">Videos</span>
-              </NavLink>
+            <div className="nav-link">
+  <VideoLibraryIcon fontSize="large" className="me-2" />
+  <span className="nav-item-text">Videos</span>
+</div>
 
             </li>
             {isAllowedUser && (
