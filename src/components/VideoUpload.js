@@ -37,10 +37,10 @@ const VideoUpload = () => {
       const thumbnailStorageRef = ref(storage, `${videoTitle}_thumbnail.jpg`);
       const thumbnailUploadTask = uploadBytesResumable(thumbnailStorageRef, thumbnailFile);
 
-     
+
       videoUploadTask.on('state_changed',
         (snapshot) => {
-        
+
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setUploadProgress(progress);
         },
@@ -48,7 +48,7 @@ const VideoUpload = () => {
           console.error('Error during video upload:', error);
         },
         async () => {
-          
+
           const videoDownloadURL = await getDownloadURL(videoUploadTask.snapshot.ref);
           const thumbnailDownloadURL = await getDownloadURL(thumbnailUploadTask.snapshot.ref);
 
@@ -58,11 +58,11 @@ const VideoUpload = () => {
             thumbnailUrl: thumbnailDownloadURL,
             timestamp: serverTimestamp(),
             likes: 0,
+            comments: [],
           });
 
           console.log('Video uploaded successfully! Document ID:', videoDocRef.id);
           navigate("/");
-
         }
       );
     } catch (error) {
@@ -76,17 +76,17 @@ const VideoUpload = () => {
       <h2>Upload Video</h2>
       <label className='form-control'>
         Video Title:
-        <input type="text" value={videoTitle} onChange={handleTitleChange} className='video-title input-control'  />
+        <input type="text" value={videoTitle} onChange={handleTitleChange} className='video-title input-control' />
       </label>
       <br />
       <label className='form-control'>
         Select Video File:
-        <input type="file" accept="video/*" onChange={handleVideoFileChange} className='input-control'/>
+        <input type="file" accept="video/*" onChange={handleVideoFileChange} className='input-control' />
       </label>
       <br />
       <label>
         Select Thumbnail:
-        <input type="file" accept="image/*" onChange={handleThumbnailFileChange} className='input-control'/>
+        <input type="file" accept="image/*" onChange={handleThumbnailFileChange} className='input-control' />
       </label>
       <br />
       <progress value={uploadProgress} max="100"></progress>

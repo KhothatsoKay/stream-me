@@ -4,6 +4,7 @@ import { auth } from './firebase';
 import './Navbar.css';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 const Navbar = () => {
   const [user, setUser] = useState(null);
 

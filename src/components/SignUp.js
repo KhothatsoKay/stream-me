@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -13,6 +14,11 @@ const SignUp = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+
+      await updateProfile(user, {
+        displayName: username,
+      });
+
       alert("user created");
       console.log('User created:', user);
       navigate("/login");
@@ -27,6 +33,10 @@ const SignUp = () => {
     <div>
       <h2>Sign Up</h2>
       <form>
+      <div className='mb-3'>
+        <label for='username' className='form-label'>Username</label>
+        <input type="username" className='form-control' value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
         <div className='mb-3'>
         <label for='email' className='form-label'>Email:</label>
         <input type="email" className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
