@@ -7,13 +7,11 @@ import { onAuthStateChanged } from 'firebase/auth';
 import SendIcon from '@mui/icons-material/Send';
 import './VideoDisplay.css';
 
-
 const VideoDisplay = ({ videoId, videoUrl }) => {
   const [wrapperHeight, setWrapperHeight] = useState(0);
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [user, setUser] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,7 +56,6 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
       console.log('User:', user);
     });
 
@@ -142,7 +139,7 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
         </ul>
         <div className='comment'>
           <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Add a comment...' />
-          <SendIcon onclick={handleAddComment} className='md-3 add-comment'/>
+          <SendIcon onClick={handleAddComment} className='md-3 add-comment'/>
         </div>
       </div>
     </div>
