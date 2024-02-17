@@ -8,6 +8,7 @@ const VideoUpload = () => {
   const [thumbnailFile, setThumbnailFile] = useState(null);
   const [videoTitle, setVideoTitle] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [playList, setPlayList] = useState(null);
   const navigate = useNavigate();
 
   const handleVideoFileChange = (e) => {
@@ -22,6 +23,10 @@ const VideoUpload = () => {
 
   const handleTitleChange = (e) => {
     setVideoTitle(e.target.value);
+  };
+
+  const handlePlayListChange = (e) => {
+    setPlayList(e.target.value);
   };
 
   const handleUpload = async () => {
@@ -59,6 +64,7 @@ const VideoUpload = () => {
             timestamp: serverTimestamp(),
             likes: 0,
             comments: [],
+            playList: playList,
           });
 
           console.log('Video uploaded successfully! Document ID:', videoDocRef.id);
@@ -77,6 +83,11 @@ const VideoUpload = () => {
       <label className='form-control'>
         Video Title:
         <input type="text" value={videoTitle} onChange={handleTitleChange} className='video-title input-control' />
+      </label>
+      <br />
+      <label className='form-control'>
+        Playlist:
+        <input type="text" value={playList} onChange={handlePlayListChange} className='video-playlist input-control' />
       </label>
       <br />
       <label className='form-control'>

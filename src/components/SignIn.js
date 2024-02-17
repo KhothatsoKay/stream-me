@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom'; 
+import './SignUp.css';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ const SignIn = () => {
       console.log('User signed in:', user);
     } catch (error) {
       console.error('Error signing in:', error.message);
+      alert("Check your network!");
     }
   };
 
@@ -25,7 +27,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container register-container'>
       <h2 className='text-center'>Sign In</h2>
      
       <form>
@@ -41,7 +43,7 @@ const SignIn = () => {
         <button className='btn btn-success' type="button" onClick={handleSignIn}>Sign In</button>
         </div>
        
-        <span type="button" onClick={navigateToSignUp}>Don't have an account? Sign Up</span>
+        <span className="btn-redirect" type="button" onClick={navigateToSignUp}>Don't have an account?<span className='signup-redirect'>Sign Up</span></span>
         
       </form>
     </div>
