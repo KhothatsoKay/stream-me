@@ -4,11 +4,11 @@ import { auth, provider } from './firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import pubbleBubbles from './purple-bubbles.png'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import VideoList from './VideoList';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -70,7 +70,9 @@ const SignIn = () => {
                 <FacebookIcon className='facebook-icon' color='primary' />
               </div>
               <div className='col'>
+                {value?<VideoList/>:
                 <GoogleIcon className='google-icon' color='warning' onClick={handleClick} />
+              }
               </div>
             </div>
             <span className='alternative-action'>or use your email account:</span>
