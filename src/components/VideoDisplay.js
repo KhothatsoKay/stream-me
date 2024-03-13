@@ -138,7 +138,7 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
           ))}
         </ul>
         <div className='comment'>
-          <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Add a comment...' />
+          <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Add  omment...' />
           <SendIcon onClick={handleAddComment} className='md-3 add-comment'/>
         </div>
       </div>

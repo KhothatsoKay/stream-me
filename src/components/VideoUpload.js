@@ -10,6 +10,7 @@ const VideoUpload = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [playList, setPlayList] = useState(null);
   const navigate = useNavigate();
+ 
 
   const handleVideoFileChange = (e) => {
     const file = e.target.files[0];
@@ -56,8 +57,7 @@ const VideoUpload = () => {
 
           const videoDownloadURL = await getDownloadURL(videoUploadTask.snapshot.ref);
           const thumbnailDownloadURL = await getDownloadURL(thumbnailUploadTask.snapshot.ref);
-
-          const videoDocRef = await addDoc(collection(firestore, 'videos'), {
+          const videoObj = {
             title: videoTitle,
             url: videoDownloadURL,
             thumbnailUrl: thumbnailDownloadURL,
@@ -65,8 +65,11 @@ const VideoUpload = () => {
             likes: 0,
             comments: [],
             playList: playList,
+          }
+          const videoDocRef = await addDoc(collection(firestore, 'videos'), {
+            ...videoObj
           });
-
+          
           console.log('Video uploaded successfully! Document ID:', videoDocRef.id);
           navigate("/");
         }

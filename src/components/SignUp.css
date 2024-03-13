@@ -1,34 +1,179 @@
+.left-section {
+    background-image: url('./purple-bubbles.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 500px;
+    padding: 0px;
+    margin: 0px;
 
-.register-container{
-    width:400px;
-    background-color: #dee2e6;
-    padding: 10px;
-    margin-top: 30px;
-    border-radius: 10px;
 }
-h2{
+
+.sign-text {
+    margin: 20px;
+}
+
+.sign-up-actions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
+    margin-top: 150px;
 }
-.btn{
-    margin-left: 140px;
+
+.signUp-btn {
+    background-color: transparent;
+    border-color: yellow;
+    margin-right: 20px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: bold;
 }
-.btn-redirect{
+
+.right-section {
+    margin-left: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+form {
+    padding: 20px;
+}
+
+.mb-3 {
+    margin: 10px;
+}
+
+.btn-login {
+    margin-left: 110px;
+    border-radius: 15px;
+    background-color: purple;
+    color: #fff;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.container {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+.social-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.facebook-icon{
+    margin-left: 158px;
+}
+.google{
+    cursor: pointer;
+}
+.alternative-action{
+    margin-left: 110px;
+    color: grey;
+}
+.mb-3 {
+    position: relative;
+  }
+  
+  .email-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px; 
+    transform: translateY(-50%);
+  }
+  .password-icon{
+    position: absolute;
+    top: 50%;
+    left: 15px; 
+    transform: translateY(-50%);
+  }
+
+body {
+    background-color: #2e3047;
+    color: #fff;
+}
+
+h2 {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.btn-redirect {
     margin-left: 65px;
 }
-.btn-redirect-login{
+
+.btn-redirect-login {
     margin-left: 90px;
 }
-.signup-redirect{
+.form-control{
+    width: 400px;
+    margin-top: 50px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    background-color: transparent;
+    margin-left: 15px;
+    padding-left: 30px;
+    
+}
+.form-control::placeholder{
+    color: #fff;
+}
+
+.signup-redirect {
     color: blue;
     margin-left: 5px;
     font-weight: 500;
 }
+
 @media (max-width: 600px) {
-    .register-container{
-        width:350px;
-        background-color: #dee2e6;
+    .container {
+        width: 350px;
         padding: 10px;
         margin-top: 30px;
         border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+    }
+
+    .right-section {
+        margin-top: -450px;
+        margin-right: 50px;
+    }
+
+    .sign-up-actions {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-top: 350px;
+        margin-left: 10px;
+    }
+
+    .signUp-btn {
+        margin-left: 15px;
+    }
+
+    .left-section {
+        background-image: url('./purple-bubbles.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+    .form-control{
+        width: 280px;
+    }
+    .btn-login{
+        margin-left: 50px;
     }
 }

@@ -1,14 +1,16 @@
-
-
-
+/*Comment Section*/
 .add-comment{
   height: 80px;
   width: 80px;
   color: rgb(11, 109, 215);
   margin: 10px;
+  cursor: pointer;
 }
 .comment{
   display: flex;
   margin-left: 20px;
   margin-bottom: 10px;
+}
+.logit{
+  margin: auto;
 }

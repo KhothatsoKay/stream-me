@@ -52,6 +52,9 @@ const SignUp = () => {
           <button className="btn btn-success" type="button" onClick={handleSignUp}>Sign Up</button>
           <span className="btn-redirect-login" type="button" onClick={navigateToSignIn}>  Have an account?<span className='signup-redirect'>Sign In</span></span>
         </div>
+        <span className='logit'>
+          Logout Instead?
+        </span>
       </form>
     </div>
   );
