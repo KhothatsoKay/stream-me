@@ -4,7 +4,6 @@ import { doc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, a
 import { firestore, auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import SendIcon from '@mui/icons-material/Send';
 import './VideoDisplay.css';
 
 const VideoDisplay = ({ videoId, videoUrl }) => {
@@ -64,13 +63,36 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
 
   const handleLike = async (e) => {
     e.stopPropagation();
+    const user = auth.currentUser;
+  
+    if (!user) {
+      console.error('User not authenticated');
+      return;
+    }
+  
     const videoRef = doc(firestore, 'videos', videoId);
-
-    await updateDoc(videoRef, {
-      likes: likes + 1,
-    });
-
-    setLikes(likes + 1);
+    const videoDoc = await getDoc(videoRef);
+  
+    if (!videoDoc.exists()) {
+      console.error('Video not found');
+      return;
+    }
+  
+    const videoData = videoDoc.data();
+  
+    if (videoData.likes && videoData.likes[user.uid]) {
+      console.log('User has already liked this video');
+      return;
+    }
+  
+    const updatedLikes = {
+      ...videoData.likes,
+      [user.uid]: true 
+    };
+  
+    await updateDoc(videoRef, { likes: updatedLikes });
+  
+    setLikes((prevLikes) => prevLikes + 1);
   };
 
   const handleDelete = async () => {
@@ -100,8 +122,7 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
       console.error('User not authenticated or email not available');
       return;
     }
-  
-    console.log("user:", user);
+
   
     const commentsCollection = collection(firestore, 'comments');
     const newCommentDocRef = await addDoc(commentsCollection, {
@@ -120,10 +141,10 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
     <div className='player-wrapper' style={{ height: wrapperHeight }}>
       <ReactPlayer className='react-player' url={videoUrl} controls={true} width='100%' height='80%' />
       <div className='video-actions'>
-        <button onClick={(e) => handleLike(e)} className='btn btn-outline-primary'>
+        <button onClick={(e) => handleLike(e)} className='btn  like-btn'>
           Like ({likes})
         </button>
-        <button onClick={(e) => handleDelete(e)} className='btn btn-outline-danger'>
+        <button onClick={(e) => handleDelete(e)} className='btn btn-outline-danger delete-btn'>
           Delete
         </button>
       </div>
@@ -133,13 +154,13 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
           {comments.map((comment) => (
             <li key={comment.id} className='list-group-item'>
               {console.log('Comment:', comment)}
-              <strong>{comment.userName}</strong>  {comment.text}
+             <p style={{color: "black"}}> <strong>{comment.userName}</strong>  {comment.text}</p>
             </li>
           ))}
         </ul>
         <div className='comment'>
           <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Add  omment...' />
-          <SendIcon onClick={handleAddComment} className='md-3 add-comment'/>
+          <button onClick={handleAddComment} className='btn add-comment'>Send</button>
         </div>
       </div>
     </div>

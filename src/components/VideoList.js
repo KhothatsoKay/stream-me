@@ -5,10 +5,13 @@ import './VideoList.css';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import VideoDisplay from './VideoDisplay';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+  const [uniquePlaylists, setUniquePlaylists] = useState([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -22,6 +25,11 @@ const VideoList = () => {
         }));
 
         setVideos(videoData);
+        
+        const playlists = [...new Set(videoData.map(video => video.playList))];
+        setUniquePlaylists(['All', ...playlists]); 
+        
+        console.log("Unique Playlists:", playlists);
       } catch (error) {
         console.error('Error fetching videos:', error);
       }
@@ -30,6 +38,10 @@ const VideoList = () => {
     fetchVideos();
   }, []);
 
+  const handlePlaylistFilter = (playlistName) => {
+    setSelectedPlaylist(playlistName === 'All' ? null : playlistName);
+  };
+  
   const handleThumbnailClick = (e, video) => {
     e.stopPropagation();
     setSelectedVideo(video);
@@ -39,25 +51,37 @@ const VideoList = () => {
     setSelectedVideo(null);
   };
 
-
+  const filteredVideos = selectedPlaylist ? videos.filter(video => video.playList === selectedPlaylist) : videos;
+  console.log("filtered Playlist:", filteredVideos);
   return (
-    <div className="video-container">
-      {selectedVideo ? (
-        <div className="video-modal">
-          <VideoDisplay videoId={selectedVideo.id} videoUrl={selectedVideo.url} videoTitle={selectedVideo.title} />
-          <button className='btn btn-warning close' onClick={(e) => { e.stopPropagation(); handleCloseModal(); }}>Close</button>
-        </div>
-      ) : (
-        <div className="video-grid">
-          {videos.map((video) => (
-            <div key={video.id} className="card video-thumbnail" onClick={(e) => handleThumbnailClick(e, video)}>
-              <img src={video.thumbnailUrl} alt={video.title} />
-              <div className="card-text">
-              </div>
-            </div>
+    <div className="container">
+      <div className="header">
+        <div className="playlist-buttons">
+          {uniquePlaylists.map((playlist, index) => (
+            <button key={index} className="btn playlist-btn" onClick={() => handlePlaylistFilter(playlist)}>
+              {playlist}
+            </button>
           ))}
         </div>
-      )}
+      </div>
+      <div className="video-container">
+        {selectedVideo ? (
+          <div className="video-modal">
+            <VideoDisplay videoId={selectedVideo.id} videoUrl={selectedVideo.url} videoTitle={selectedVideo.title} />
+            <ArrowBackIosIcon className='close' onClick={(e) => { e.stopPropagation(); handleCloseModal(); }}/>
+          </div>
+        ) : (
+          <div className="video-grid">
+            {filteredVideos.map((video) => (
+              <div key={video.id} className="card video-thumbnail" onClick={(e) => handleThumbnailClick(e, video)}>
+                <img src={video.thumbnailUrl} alt={video.title} />
+                <div className="card-text">
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

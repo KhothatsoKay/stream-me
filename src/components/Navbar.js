@@ -4,7 +4,7 @@ import { auth } from './firebase';
 import './Navbar.css';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import prof from '../profileImage.jpg';
+import prof from './logo.png';
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -36,7 +36,7 @@ const Navbar = () => {
           <ul className='navbar-nav  ms-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
               <NavLink to="/" activeclassname="active" className="nav-link">
-                <VideoLibraryIcon fontSize="large" className="me-2" />
+                <VideoLibraryIcon fontSize="large" className="me-2" style={{ color: '#FFFFFF' }}/>
                 <span className="nav-item-text">Videos</span>
               </NavLink>
 
@@ -45,11 +45,10 @@ const Navbar = () => {
               <>
                 <li className='nav-item'>
                   <NavLink to="/upload" activeclassname="active" className="nav-link">
-                    <CloudUploadIcon fontSize="large" className="me-2" />
+                    <CloudUploadIcon fontSize="large" className="me-2" style={{ color: '#FFFFFF' }}/>
                     <span className="nav-item-text">upload</span>
                   </NavLink>
                 </li>
-
               </>
             )}
             {!user && (

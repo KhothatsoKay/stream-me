@@ -8,7 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import VideoList from './VideoList';
+
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -23,6 +23,7 @@ const SignIn = () => {
       const user = userCredential.user;
       navigate("/");
       console.log('User signed in:', user);
+      console.log(value);
     } catch (error) {
       console.error('Error signing in:', error.message);
       alert("Check your network!");
@@ -60,7 +61,6 @@ const SignIn = () => {
             <span className='text-center'>Don't have an account?</span>
             <button className='btn signUp-btn' onClick={navigateToSignUp}>Sign Up</button>
           </div>
-
         </div>
         <div className='right-section col'>
           <form>
@@ -70,12 +70,11 @@ const SignIn = () => {
                 <FacebookIcon className='facebook-icon' color='primary' />
               </div>
               <div className='col'>
-                {value?<VideoList/>:
                 <GoogleIcon className='google-icon' color='warning' onClick={handleClick} />
-              }
               </div>
+              <span className='alternative-action'>or use your email account:</span>
             </div>
-            <span className='alternative-action'>or use your email account:</span>
+           
             <div className='mb-3'>
               <EmailIcon className='email-icon' color='action' />
               <input type="email" className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='  Email' />

@@ -1,8 +1,4 @@
 .left-section {
-    background-image: url('./purple-bubbles.png');
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: bottom;
     height: 500px;
     padding: 0px;
     margin: 0px;
@@ -68,17 +64,21 @@ form {
     flex-direction: row;
     margin-top: 10px;
     margin-bottom: 10px;
+    justify-content: center;
 }
 .facebook-icon{
     margin-left: 158px;
 }
-.google{
+
+.google-icon{
     cursor: pointer;
 }
+
 .alternative-action{
     margin-left: 110px;
     color: grey;
 }
+
 .mb-3 {
     position: relative;
   }
@@ -97,7 +97,7 @@ form {
   }
 
 body {
-    background-color: #2e3047;
+    background-color: black;
     color: #fff;
 }
 
@@ -136,18 +136,22 @@ h2 {
 
 @media (max-width: 600px) {
     .container {
-        width: 350px;
+        width: 370px;
         padding: 10px;
         margin-top: 30px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        margin-left: 5px;
+        margin-left: 8px;
+    }
+    .left-section {
+        padding: 0px;
+        margin: 0px;
     }
 
     .right-section {
         margin-top: -450px;
-        margin-right: 50px;
+        margin-left: 5px;
     }
 
     .sign-up-actions {
@@ -157,18 +161,11 @@ h2 {
         justify-content: center;
         text-align: center;
         margin-top: 350px;
-        margin-left: 10px;
+        margin-left: 27px;
     }
 
     .signUp-btn {
         margin-left: 15px;
-    }
-
-    .left-section {
-        background-image: url('./purple-bubbles.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: bottom;
     }
     .form-control{
         width: 280px;
@@ -176,4 +173,9 @@ h2 {
     .btn-login{
         margin-left: 50px;
     }
+    .facebook-icon{
+        margin-left: 105px;
+    }
+    
+
 }
