@@ -26,15 +26,19 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
     const fetchLikes = async () => {
       const videoRef = doc(firestore, 'videos', videoId);
       const videoDoc = await getDoc(videoRef);
-
+  
       if (videoDoc.exists()) {
         const videoData = videoDoc.data();
-        setLikes(videoData.likes || 0);
+        console.log('Video Data:', videoData); 
+        const likesCount = videoData.likes || 0;
+        setLikes(Number(likesCount));
       }
     };
-
+  
     fetchLikes();
   }, [videoId]);
+  
+  
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -79,22 +83,17 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
     }
   
     const videoData = videoDoc.data();
-  
     if (videoData.likes && videoData.likes[user.uid]) {
       console.log('User has already liked this video');
       return;
     }
   
-    const updatedLikes = {
-      ...videoData.likes,
-      [user.uid]: true 
-    };
-  
-    await updateDoc(videoRef, { likes: updatedLikes });
+    await updateDoc(videoRef, { likes: videoData.likes + 1 });
   
     setLikes((prevLikes) => prevLikes + 1);
   };
-
+  
+  
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this video?')) {
       console.log('Deleting...');
