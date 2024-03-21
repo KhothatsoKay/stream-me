@@ -27,12 +27,17 @@ li {
 
 .nav-link {
   text-decoration: none;
-  font-weight: bold;
   font-size: 16px;
+  color: #fff;
 }
-
+.navbar-nav .nav-link.active{
+  color: rgb(92, 92, 92);
+}
 .nav-link:hover {
   color: #ffc107;
+}
+.navbar-toggler-icon span{
+  color: #fff;
 }
 
 .nav-item-text {
@@ -60,7 +65,7 @@ button {
 .logo-image {
   height: 60px;
   width: 100px;
-  margin-left: 10px;
+  margin-left: -10px;
 }
 .navbar{
   color:#fff;

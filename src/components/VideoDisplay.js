@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import './VideoDisplay.css';
 
-const VideoDisplay = ({ videoId, videoUrl }) => {
+const VideoDisplay = ({ videoId, videoUrl, videoTitle }) => {
   const [wrapperHeight, setWrapperHeight] = useState(0);
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState([]);
@@ -73,7 +73,6 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
       console.error('User not authenticated');
       return;
     }
-  
     const videoRef = doc(firestore, 'videos', videoId);
     const videoDoc = await getDoc(videoRef);
   
@@ -81,17 +80,20 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
       console.error('Video not found');
       return;
     }
-  
     const videoData = videoDoc.data();
-    if (videoData.likes && videoData.likes[user.uid]) {
+    const likesCollection = collection(firestore, 'likes');
+    const querySnapshot = await getDocs(query(likesCollection, where('videoId', '==', videoId), where('userId', '==', user.uid)));
+  
+    if (!querySnapshot.empty) {
       console.log('User has already liked this video');
       return;
     }
-  
     await updateDoc(videoRef, { likes: videoData.likes + 1 });
+    await addDoc(likesCollection, { videoId, userId: user.uid });
   
     setLikes((prevLikes) => prevLikes + 1);
   };
+  
   
   
   const handleDelete = async () => {
@@ -139,11 +141,15 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
   return (
     <div className='player-wrapper' style={{ height: wrapperHeight }}>
       <ReactPlayer className='react-player' url={videoUrl} controls={true} width='100%' height='80%' />
+      <div className="video-content">
+        <span>{videoTitle}</span>
+
+      </div>
       <div className='video-actions'>
         <button onClick={(e) => handleLike(e)} className='btn  like-btn'>
           Like ({likes})
         </button>
-        <button onClick={(e) => handleDelete(e)} className='btn btn-outline-danger delete-btn'>
+        <button onClick={(e) => handleDelete(e)} className='btn  delete-btn'>
           Delete
         </button>
       </div>
@@ -158,7 +164,7 @@ const VideoDisplay = ({ videoId, videoUrl }) => {
           ))}
         </ul>
         <div className='comment'>
-          <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Add  omment...' />
+          <input type='text'  value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder='Comment here...' />
           <button onClick={handleAddComment} className='btn add-comment'>Send</button>
         </div>
       </div>

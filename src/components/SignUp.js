@@ -34,7 +34,7 @@ const SignUp = () => {
 
   return (
     <div className='container register-container'>
-      <h2>Sign Up</h2>
+      <h2 className='text-center'>Sign Up</h2>
       <form>
         <div className='mb-3'>
           <label for='username' className='form-label'>Username</label>
@@ -49,12 +49,9 @@ const SignUp = () => {
           <input type="password" className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className='mb-3'>
-          <button className="btn btn-success" type="button" onClick={handleSignUp}>Sign Up</button>
+          <button className="btn btn-login" type="button" onClick={handleSignUp}>Sign Up</button>
           <span className="btn-redirect-login" type="button" onClick={navigateToSignIn}>  Have an account?<span className='signup-redirect'>Sign In</span></span>
         </div>
-        <span className='logit'>
-          Logout Instead?
-        </span>
       </form>
     </div>
   );

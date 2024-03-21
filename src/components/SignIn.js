@@ -74,7 +74,6 @@ const SignIn = () => {
               </div>
               <span className='alternative-action'>or use your email account:</span>
             </div>
-           
             <div className='mb-3'>
               <EmailIcon className='email-icon' color='action' />
               <input type="email" className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='  Email' />

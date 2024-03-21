@@ -1,5 +1,4 @@
 .add-comment{
-  border: 1px solid yellow;
   height: 50px;
   width: 80px;
   margin-top: 20px;
@@ -7,16 +6,18 @@
 }
 .comment {
   display: flex;
-  margin-left: 20px;
+  margin-left: 5px;
   margin-bottom: 10px;
   color: #000;
 }
 .like-btn{
-  border: 1px solid yellow;
+  background-color: rgb(21, 21, 21);
   color: #fff;
 }
 .delete-btn{
   margin-left: 10px;
+  background-color: rgb(23, 23, 23);
+  color: #fff;
 }
 
 .comment input[type="text"] {
@@ -29,4 +30,7 @@
 
 .list-group-item {
   color: black;
+}
+.list-group{
+  margin-left: 5px;
 }

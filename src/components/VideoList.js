@@ -73,9 +73,13 @@ const VideoList = () => {
         ) : (
           <div className="video-grid">
             {filteredVideos.map((video) => (
-              <div key={video.id} className="card video-thumbnail" onClick={(e) => handleThumbnailClick(e, video)}>
-                <img src={video.thumbnailUrl} alt={video.title} />
-                <div className="card-text">
+              <div key={video.id} className="video-container" onClick={(e) => handleThumbnailClick(e, video)}>
+                <div className="video-thumbnail">
+                  <img src={video.thumbnailUrl} alt={video.title} />
+                  </div>
+                <div className="card-body">
+                  <p>{video.title}</p>
+                  <span className="video-date"></span>
                 </div>
               </div>
             ))}
