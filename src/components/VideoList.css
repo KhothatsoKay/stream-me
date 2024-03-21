@@ -66,8 +66,8 @@ h2{
   }
   .close{
     position: absolute;
-    top: 129px;
-    left: 28px; 
+    top: 150px;
+    left: 10px; 
     cursor: pointer;
   }
   .video-container{
@@ -99,6 +99,7 @@ h2{
   }
   .playlist-buttons{
     margin-top: -50px;
+    margin: 10px;
   }
 
 
